@@ -47,12 +47,12 @@ export class Usuario implements OnInit{
       this.modell ={name : ""};
     }
 
-    obterUsuario():void{
+    obterUsuario():any{
       this.usuarioService.getUsuarios()
         .then((usuarios:usuarios)=>{ this.usuarios =usuarios;})
         .catch();
     }
-    obterTarefa():void{
+    obterTarefa():any{
       this.usuarioService.getTarefas()
         .then((tarefas:tarefas)=>{ this.tarefas =tarefas;})
         .catch();

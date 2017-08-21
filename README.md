@@ -10,11 +10,11 @@ Angular/cli
 <b>Caso não tenha angular 4 instalado intale</b>
  npm install -g @angular/cli
 
-#Entre no projeto 
+<b>Entre no projeto</b> 
 cd angular4
 
-#Instale diretorio node_modules
+<b>Instale diretorio node_modules</b>
 npm install
 
-#Start o servidor localhost:4200
+<b>Start o servidor localhost:4200</b><br/>
 ng serve

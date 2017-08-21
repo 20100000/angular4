@@ -3,7 +3,6 @@
  */
 import {Component, OnInit} from '@angular/core';
 import { TarefaService } from './tarefa.service';
-import {copyObj} from "@angular/animations/browser/src/util";
 
 
 @Component({
@@ -20,14 +19,14 @@ export class Tarefa implements OnInit{
    status   = [];
    usuarios = [];
 
-    obterTarefa():void{
+    obterTarefa():any{
       this.tarefaService.getTarefas()
         .then((tarefas:tarefas)=>{ this.tarefas = tarefas; })
         .catch((data) => {console.log(data)});
 
     }
 
-    obterUsuario():void{
+    obterUsuario():any{
       this.tarefaService.getUsuarios()
         .then((usuarios:usuarios)=>{ this.usuarios = usuarios; })
         .catch((data) => {console.log(data)});
@@ -89,8 +88,8 @@ export class Tarefa implements OnInit{
     }
 
     ngOnInit(){
-      this.obterUsuario();
-      this.obterStatus();
-      this.obterTarefa();
+       this.obterUsuario();
+        this.obterStatus();
+       this.obterTarefa();
     }
 }
