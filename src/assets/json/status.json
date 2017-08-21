@@ -1,0 +1,7 @@
+{
+  "status":[
+      {"id":1,"name":"Pendente"},
+      {"id":2,"name":"Desenvolvendo"},
+      {"id":3,"name":"Concluido"}
+  ]
+}

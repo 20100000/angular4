@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-sm-10">
+    <h2 class="text-primary">{{titulo}}</h2>
+  </div>
+  <div class="col-sm-2">
+    <button type="button" class="btn btn-primary pull-right"  data-toggle="modal" (click)="openModel();" data-target="#modalTarefa">Adicionar</button>
+  </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Tarefas</th>
+                <th width="65px"></th>
+                <th width="65px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of usuarios" >
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{tarefasUser(item.id)}}</td>
+                <td><button type="button" class="btn btn-warning btn-sm"  data-toggle="modal" (click)="openModel(item);" data-target="#modalTarefa">Editar</button></td>
+                <td><button type="button" class="btn btn-danger btn-sm" (click)="onDelete(item);">Deletar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalTarefa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" >Nova Tarefa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label  class="form-control-label">Titulo:</label>
+
+            <input type="text" class="form-control" [(ngModel)]="modell.name" name="name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="newTarefa(modell)">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

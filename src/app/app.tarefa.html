@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col-sm-10">
+    <h2 class="text-primary">{{titulo}}</h2>
+  </div>
+  <div class="col-sm-2">
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" (click)="openModel();" data-target="#modalTarefa">Adicionar</button>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr >
+      <th>#</th>
+      <th>Tarefa</th>
+      <th>Usuario</th>
+      <th>Atividades</th>
+      <th>Status</th>
+      <th width="65px"></th>
+      <th width="65px"></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of tarefas">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{userName(item.idUsuario)}} </td>
+          <td><ol><li *ngFor="let atv of item.atividade">{{atv.at}}</li></ol></td>
+          <td>
+              <b *ngIf="item.status == 1" class="bg-danger text-white center">{{statusName(item.status)}}</b>
+              <b *ngIf="item.status == 2" class="bg-info text-white center">{{statusName(item.status)}}</b>
+              <b *ngIf="item.status == 3" class="bg-success text-white center">{{statusName(item.status)}} </b>
+          </td>
+          <td><button type="button" class="btn btn-warning btn-sm" (click)="openModel(item);"  data-toggle="modal" data-target="#modalTarefa">Editar</button></td>
+          <td><button type="button" class="btn btn-danger btn-sm" (click)="onDelete(item);">Deletar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+  <div class="modal fade" id="modalTarefa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" >Nova Tarefa</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label  class="form-control-label">Titulo:</label>
+
+              <input type="text" class="form-control" [(ngModel)]="modell.name" name="name">
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label  class="form-control-label">Usuario:</label>
+                        <select  class="form-control" [(ngModel)]="modell.idUsuario" name="">
+                            <option *ngFor="let us of usuarios" [ngValue]="us.id" [selected]="us.id === modell.idUsuario">{{us.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-control-label">Status:</label>
+                        <select  class="form-control" [(ngModel)]="modell.status" name="status">
+                            <option *ngFor="let st of status" [ngValue]="st.id" [selected]="st.id === modell.status">{{st.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" [(ngModel)]="atividade" name="atividade" />
+                    </div>
+                    <div class="col-sm-4">
+                       <button type="button" class="btn btn-primary" (click)="addAtividade()"> Add Atividades</button>
+                    </div>
+                </div>
+              <br/>
+              <div class="row">
+                  <div class="col-sm-12">
+                      <table class="table table-bordered">
+                          <tr>
+                              <th>Atividades</th>
+                          </tr>
+                          <tr *ngFor="let a of modell.atividade">
+                              <td> {{a.at}}</td>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="newTarefa(modell)">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
