@@ -7,7 +7,7 @@ npm
 Angular/cli
 
 
-#Caso não tenha angular 4 instalado intale
+<b>Caso não tenha angular 4 instalado intale</b>
  npm install -g @angular/cli
 
 #Entre no projeto 
